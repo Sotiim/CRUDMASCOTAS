@@ -45,10 +45,10 @@ if (isset($_POST['update'])) {
       <div class="card card-body">
       <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
       <div class="form-group">
-            <input type="text" name="nombre"  class="form-control" value="<?php echo $nombre; ?>"></input>
+            <input type="text" name="nombre"  class="form-control" value="<?php echo $nombre; ?>" required></input>
           </div>
           <div class="form-group">
-          <div>Selecciona Tipo de Mascota : <select name="Tipo" class="form-control"  >
+          <div>Selecciona Tipo de Mascota : <select name="Tipo" class="form-control" required>
 				<option value="0" disabled>Este es tu antiguo tipo: <?php echo $Tipo; ?></option>
         <option value="Mamíferos">Mamíferos</option>
         <option value="Aves">Aves</option>
@@ -57,10 +57,10 @@ if (isset($_POST['update'])) {
             </div>
           </div>
           <div class="form-group">
-            <input type="text" name="Edad"  class="form-control" value="<?php echo $Edad; ?>"></input>
+            <input type="text" name="Edad"  class="form-control" value="<?php echo $Edad; ?>" required></input>
           </div>
           <div class="form-group">
-            <input type="text" name="Enfermedades"  class="form-control" value="<?php echo $Enfermedades; ?>"></input>
+            <input type="text" name="Enfermedades"  class="form-control" value="<?php echo $Enfermedades; ?>" required></input>
           </div>
         <button class="btn-success" name="update">
           Actualizar

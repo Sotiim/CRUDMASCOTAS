@@ -20,11 +20,10 @@
       <div class="card card-body">
         <form action="save.php" method="POST">
           <div class="form-group">
-            <input type="text" name="nombre"  class="form-control" placeholder="Nombre"></input>
+            <input type="text" name="nombre"  class="form-control" placeholder="Nombre" required></input>
           </div>
           <div class="form-group">
-            <div>Selecciona Tipo de Mascota : <select name="Tipo" class="form-control" >
-				<option value="0">Seleccionar Tipo</option>
+            <div>Selecciona Tipo de Mascota : <select name="Tipo" class="form-control" required>
         <option value="Mamíferos">Mamíferos</option>
         <option value="Aves">Aves</option>
         <option value="Reptiles">Reptiles</option>
@@ -32,10 +31,10 @@
             </div>
             </div>
           <div class="form-group">
-            <input type="text" name="Edad"  class="form-control" placeholder="Edad"></input>
+            <input type="text" name="Edad"  class="form-control" placeholder="Edad" required></input>
           </div>
           <div class="form-group">
-            <input type="text" name="Enfermedades"  class="form-control" placeholder="Enfermedades"></input>
+            <input type="text" name="Enfermedades"  class="form-control" placeholder="Enfermedades" required></input>
           </div>
           <input type="submit" name="save" class="btn btn-success btn-block" value="Añadir Mascota">          
         </form>

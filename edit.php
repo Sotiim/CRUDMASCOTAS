@@ -1,21 +1,19 @@
 <?php
 include("db.php");
 $nombre = '';
-$Tipo= '';
 $Edad= '';
-$Enfermedades= '';
+$Enfermedad= '';
 
 
 if  (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $query = "SELECT * FROM mascotas WHERE id=$id";
+  $query = "SELECT * FROM paciente WHERE id=$id";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
     $nombre = $row['nombre'];
-    $Tipo = $row['Tipo'];
     $Edad = $row['Edad'];
-    $Enfermedades = $row['Enfermedades'];
+    $Enfermedad = $row['Enfermedad'];
 
   }
 }
@@ -23,22 +21,21 @@ if  (isset($_GET['id'])) {
 if (isset($_POST['update'])) {
   $id = $_GET['id'];
   $nombre= $_POST['nombre'];
-  $Tipo = $_POST['Tipo'];
   $Edad = $_POST['Edad'];
-  $Enfermedades = $_POST['Enfermedades'];
-  
-  $date=date_create("",timezone_open("America/Mexico_city"));
-  $updated_at = date_format($date,"Y-m-d H:i:s");
-
-  $query = "UPDATE mascotas set nombre = '$nombre', Tipo = '$Tipo', Edad = '$Edad', Enfermedades = '$Enfermedades', updated_at = '$updated_at'  WHERE id=$id";
+  $Enfermedad = $_POST['Enfermedad'];
+  $query = "SELECT ExplicacionE FROM enfermedades where nombreE = '$Enfermedad'";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_array($result);
+  $ExplicacionE = $row[0];
+  $query = "UPDATE paciente set nombre = '$nombre', ExplicacionE ='$ExplicacionE', Edad = '$Edad', Enfermedad = '$Enfermedad' WHERE id=$id";
   mysqli_query($conn, $query);
-  $_SESSION['message'] = 'Se ha actualizado la Mascota correctamente';
+  $_SESSION['message'] = 'Se ha actualizado el Paciente correctamente';
   $_SESSION['message_type'] = 'warning';
   header('Location: index.php');
 }
 
 ?>
-<?php include('includes/header.php'); ?>
+<?php $page='Paciente'; include('includes/header.php'); ?>
 <div class="container p-4">
   <div class="row">
     <div class="col-md-4 mx-auto">
@@ -48,19 +45,24 @@ if (isset($_POST['update'])) {
             <input type="text" name="nombre"  class="form-control" value="<?php echo $nombre; ?>" required></input>
           </div>
           <div class="form-group">
-          <div>Selecciona Tipo de Mascota : <select name="Tipo" class="form-control" required>
-				<option value="0" disabled>Este es tu antiguo tipo: <?php echo $Tipo; ?></option>
-        <option value="Mamíferos">Mamíferos</option>
-        <option value="Aves">Aves</option>
-        <option value="Reptiles">Reptiles</option>
+          <div>Selecciona Tipo de Enfermedad : <select name="Enfermedad" class="form-control" required >
+				<option value="0" disabled>Este es tu Enfermedad antigua : <?php echo $Enfermedad; ?></option>
+
+        <?php
+          $query = "SELECT * FROM enfermedades";
+          $result_tasks = mysqli_query($conn, $query);    
+
+          foreach($result_tasks as $row) { ?>
+
+            <option value="<?php echo $row['nombreE']; ?>"><?php echo $row['nombreE']; ?></option>
+            
+          <?php } ?>
+
             </select>
             </div>
           </div>
           <div class="form-group">
             <input type="text" name="Edad"  class="form-control" value="<?php echo $Edad; ?>" required></input>
-          </div>
-          <div class="form-group">
-            <input type="text" name="Enfermedades"  class="form-control" value="<?php echo $Enfermedades; ?>" required></input>
           </div>
         <button class="btn-success" name="update">
           Actualizar

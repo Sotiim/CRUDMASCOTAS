@@ -1,18 +1,18 @@
 <?php
 
-include("db.php");
+include("../db.php");
 
 if(isset($_GET['id'])) {
   $id = $_GET['id'];
-  $query = "DELETE FROM paciente WHERE id = $id";
+  $query = "DELETE FROM enfermedades WHERE id = $id";
   $result = mysqli_query($conn, $query);
   if(!$result) {
     die("Query Failed.");
   }
 
-  $_SESSION['message'] = 'Paciente Eliminado Correctamente!';
+  $_SESSION['message'] = 'Enfermedad Eliminada Correctamente!';
   $_SESSION['message_type'] = 'danger';
-  header('Location: index.php');
+  header('Location: ../enfermedades.php');
 }
 
 ?>

@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="<?php if($page== 'Paciente'){echo "index.php";}else{echo "index.php";}?>""><img src="includes/intro.png"  height="75" /></a>
+        <a class="navbar-brand" href="index.php"><img src="../includes/intro.png"  height="75" /></a>
         
          <a class="navbar-brand" href=" <?php if($page== 'Paciente'){echo "enfermedades.php";}else{echo "index.php";}?>" ><?php if($page== 'Paciente'){echo "Agregar enfermedades";}else{echo "Agregar Pacientes";}?></a>
       </div>

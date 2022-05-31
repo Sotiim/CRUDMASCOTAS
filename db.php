@@ -6,7 +6,7 @@ $conn = mysqli_connect(
   'localhost',
   'root',
   '',
-  'crud_mascotas'
+  'hospitalsa'
 ) or die(mysqli_error($mysqli));
 
 ?>
